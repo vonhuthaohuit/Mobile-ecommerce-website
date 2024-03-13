@@ -21,7 +21,7 @@ namespace DoAn_LTW.DAO
         {
 
         }
-        private string linkConnect = @"Data Source=VO-NHUT-HAO\SQLEXPRESS;Initial Catalog=QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTW;Persist Security Info=True;User ID=sa;Password=123;MultipleActiveResultSets=True;Application Name=EntityFramework";
+        private string linkConnect = @"";
 
         public DataTable ExecuteQuery(string query, object[] paramester = null)
         {
