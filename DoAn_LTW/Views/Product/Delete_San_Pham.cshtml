@@ -1,0 +1,89 @@
+﻿@model DoAn_LTW.Models.CHITIETSANPHAM
+<main id="main" class="main">
+    <div class="pagetitle">
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    @Html.ActionLink("Trang Chủ", "Main_Page", "Provider")
+                </li>
+                <li class="breadcrumb-item">Danh Sách Sản Phẩm</li>
+                <li class="breadcrumb-item">Thông Tin Các Sản Phẩm</li>
+                <li class="breadcrumb-item">Xóa Sản Phẩm</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" action="@Url.Action("Delete_San_Pham", "Product")">
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.ID)
+                            <br />
+                            <div class="row mb-3">
+                                <label class="control-label col-md-2">Mã Chi Tiết Sản Phẩm</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.MACHITIETSANPHAM)
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="control-label col-md-2">Mã Loại</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.MALOAI)
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="control-label col-md-2">Tên Sản Phẩm</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.TENSANPHAM)
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="control-label col-md-2">Giá</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.GIA)
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="control-label col-md-2">Màu Sắc</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.MAUSAC)
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="control-label col-md-2">Mô Tả Sản Phẩm</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.MOTASANPHAM)
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="control-label col-md-2">Hình Ảnh</label>
+                                <div class="col-md-10">
+                                    <img src="@Url.Content("~/assets/img/" + Model.HINHANH)" alt="Product Image" class="img-thumbnail" style="max-width: 100px; max-height: 100px;" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="control-label col-md-2">Mã Nhà Cung Cấp</label>
+                                <div class="col-md-10">
+                                    @Html.DisplayFor(model => model.MANCC)
+                                </div>
+                            </div>
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Delete" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

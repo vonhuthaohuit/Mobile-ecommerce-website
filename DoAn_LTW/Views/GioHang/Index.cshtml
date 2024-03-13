@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sugong's Giỏ Hàng</title>
+    <link href="~/Content/image/Logo_SuGong.jpg" rel="icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .item-center-div {
+            display: flex;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .no-underline {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body style="background-color:ghostwhite">
+    <h1 style="text-align: center">Giỏ Hàng</h1>
+    <div class="container">
+        @if (@ViewBag.ThongBao == 0)
+        {
+            <div class="col-sm-12" style="text-align:center; margin-top:80px;"> Bạn không có sản phẩm nào trong giỏ hàng ! </div>
+            <div class="d-flex flex-row align-items-center mt-3 p-2 rounded" style="margin-left:580px;">
+                <button class="btn btn-warning btn-block btn-lg ml-2 pay-button" type="button"> @Html.ActionLink("Mua hàng", "Index", "Product", new { style = "text-decoration:none;" }) </button>
+            </div>
+        }
+        else
+        {
+            <div class="container align-items-center" style="width:2100px;height:70px; text-align:center;background-color:white;margin-top:100px;">
+                <div class="row item-center-div container " style="height: 30px; width:2000px; border-radius:10px; top:80px;padding-top:25px;">
+                    @*<div class="col-sm-1">
+                            <input type="checkbox" id="CheckAll" />
+                        </div>*@
+                    <div class="col-sm-1" style="text-align:left"> Sản phẩm </div>
+                    <div class="col-sm-3">  </div>
+                    <div class="col-sm-2"> Giá </div>
+                    <div class="col-sm-2"> Số Lượng </div>
+                    <div class="col-sm-2"> Thành tiên </div>
+                    <div class="col-sm-1"> Thao tác </div>
+                </div>
+            </div>
+            foreach (var item in Model)
+            {
+                //using (Html.BeginForm("Update_GioHang", "Home", new { @MaSP = item.MAGIOHANG }))
+                //{
+                <div class="container align-items-center" style="width: 1380px; height: 120px; text-align: center; background-color: white; margin-top:20px;">
+                    <div class="row container item-center-div" style="height: 30px; width:1300px; border-radius:10px; top:80px;">
+                        @*<div class="col-sm-1">
+                                <input type="checkbox" name=@item.MAGIOHANG herf="@Url.Action("LoadBill", "Cart", new { @MaSP = item.MAGIOHANG, @strURL = Request.Url.ToString() })" />
+                            </div>*@
+                        <div class="col-sm-1">
+                            <img class="rounded" src="~/Content/image/Image_Product/@item.HINHANH" width="120">
+                        </div>
+                        <div class="col-sm-3">
+                            <p> @item.TENSANPHAM</p>
+                            <p> @item.MOTASANPHAM</p>
+                            <p> @item.MAUSAC</p>
+                        </div>
+                        <div class="col-sm-2"> @item.GIA </div>
+                        <div class="col-sm-2">
+                            <button type="submit" style="background-color:white;border:1px solid green;"> @Html.ActionLink("-", "Tru_SoLuong", new { @MaSP = item.MAGIOHANG }, new { style = "text-decoration:none; width:15px" })  </button>
+                            <input style="width:50px;text-align:center" type="text" name="txtSoLuong" value=@item.SOLUONG />
+                            <button type="submit" style="background-color: white; border: 1px solid green; "> @Html.ActionLink("+", "Them_SoLuong", new { @MaSP = item.MAGIOHANG }, new { style = "text-decoration:none;width:15px" })  </button>
+                        </div>
+                        <div class="col-sm-2"> @item.THANHTIEN </div>
+                        <div class="col-sm-1">
+                            <i class="fa fa-trash mb-1 text-danger">@Html.ActionLink("Xóa", "Delete_GioHang", new { @MaSP = item.MAGIOHANG }, new { style = "text-decoration:none;" })</i>
+                        </div>
+                    </div>
+                </div>
+                @*}*@
+
+            }
+            <div style="font-weight: bold; text-align: right; color: red">
+
+                <div colspan="3"> Tổng sản phẩm: @ViewBag.Quatity</div>
+
+                <div colspan="3"> Thành tiền:  @ViewBag.Price VNĐ</div>
+            </div>
+            <div class="d-flex flex-row align-items-center mt-3 p-2 rounded" style="margin-left:580px;">
+                <button class="btn btn-warning btn-block btn-lg ml-2 pay-button" type="button"> @Html.ActionLink("Mua hàng", "LoadBill", null ,new { style = "text-decoration:none;" }) </button>
+            </div>
+        }
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>
+

@@ -1,0 +1,50 @@
+﻿@model DoAn_LTW.Models.TAIKHOANNHANVIEN
+@{
+    ViewBag.Title = "Register Account Staff";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container">
+        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="pt-4 pb-2">
+                                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                                </div>
+
+                                @using (Html.BeginForm("Register_Account_NV", "Account", FormMethod.Post, new { @class = "row g-3 needs-validation", novalidate = "novalidate" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="col-12">
+                                        <label for="yourUsername" class="form-label">Tên Tài Khoản</label>
+                                        <div class="input-group has-validation">
+                                            <span class="input-group-text" id="inputGroupPrepend"></span>
+                                            @Html.TextBoxFor(model => model.TENTAIKHOAN, new { @class = "form-control", id = "yourUsername", required = "required" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="yourPassword" class="form-label">Mật Khẩu</label>
+                                        @Html.PasswordFor(model => model.MATKHAU, new { @class = "form-control", id = "yourPassword", required = "required" })
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="col-12">
+                                            <button class="btn btn-primary w-100" type="submit">Submit</button>
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

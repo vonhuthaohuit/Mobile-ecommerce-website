@@ -1,0 +1,63 @@
+﻿@model DoAn_LTW.Models.PERSON
+
+@{
+    ViewBag.Title = "Register Person";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container">
+        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="pt-4 pb-2">
+                                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                                </div>
+                                @using (Html.BeginForm("Register_Information", "Account", FormMethod.Post, new { @class = "row g-3 needs-validation", novalidate = "novalidate" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="col-12">
+                                        <label for="maPerson" class="form-label">Mã Người Dùng</label>
+                                        @Html.TextBoxFor(model => model.MAPERSON, new { @class = "form-control", id = "maPerson", required = "required" })
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="ten" class="form-label">Tên</label>
+                                        @Html.TextBoxFor(model => model.TEN, new { @class = "form-control", id = "ten", required = "required" })
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="soDienThoai" class="form-label">Số Điện Thoại</label>
+                                        @Html.TextBoxFor(model => model.SODIENTHOAI, new { @class = "form-control", id = "soDienThoai", required = "required" })
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="email" class="form-label">Email</label>
+                                        @Html.TextBoxFor(model => model.EMAIL, new { @class = "form-control", id = "email", required = "required" })
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="diaChi" class="form-label">Địa Chỉ</label>
+                                        @Html.TextBoxFor(model => model.DIACHI, new { @class = "form-control", id = "diaChi" })
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="gioiTinh" class="form-label">Giới Tính</label>
+                                        @Html.TextBoxFor(model => model.GIOITINH, new { @class = "form-control", id = "gioiTinh" })
+                                    </div>
+
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100" type="submit">Submit</button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

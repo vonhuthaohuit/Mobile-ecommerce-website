@@ -1,0 +1,25 @@
+﻿
+
+@model IEnumerable<DoAn_LTW.Models.LOAISANPHAM>
+
+<link href="~/Content/ShareStyle/Style.css" rel="stylesheet" />
+
+<div class="my-extended-div">
+    <div class="block-featured-product container">
+        <div class="product-list-title">
+            <h2><a href="@Url.Action("ShowALL", "Product")">ĐIỆN THOẠI NỔI BẬT NHẤT</a></h2>
+            <p><a href="@Url.Action("ShowALL", "Product")" class="btn-show">Xem tất cả</a></p>
+        </div>
+        <div class="product-list-horizontal">
+            <div class="product-list-scroll">
+                @foreach (var item in Model)
+                {
+                    <button class="btn-theLoai m-2" type="button" onclick="window.location.href='@Url.Action("ShowProductByType","Product", new { id = item.MALOAI})'">
+                        @item.TENLOAI
+                    </button>
+                }
+                <button class="btn-theLoai m-2" type="button" onclick="window.location.href='@Url.Action("ShowALL", "Product")'">Xem tất cả</button>
+            </div>
+        </div>
+    </div>
+</div>

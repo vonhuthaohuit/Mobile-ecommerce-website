@@ -1,0 +1,57 @@
+﻿@model List<DoAn_LTW.Models.PERSON>
+@{
+    ViewBag.Title = "ThanhToan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Danh Sách Khách Hàng</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    @Html.ActionLink("Trang Chủ", "Main_Page", "Provider")
+                </li>
+                <li class="breadcrumb-item">Thanh Toán Đơn Mua</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" Sản Phẩm</h5>
+                        <p>Chọn khách hàng: </p>
+                        <select name="test" id="selectTest" class="mx-3" onchange="handleSelectionChange()">
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.MAPERSON">@item.TEN</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<script>
+    function handleSelectionChange() {
+        // Lấy đối tượng select
+        var selectElement = document.getElementById("selectTest");
+
+        // Lấy giá trị được chọn
+        var selectedValue = selectElement.value;
+
+        // In giá trị được chọn ra console (có thể thay đổi để sử dụng giá trị này)
+        console.log("Selected Value: " + selectedValue);
+
+        // Chuyển hướng đến trang khác với giá trị được chọn (nếu cần)
+        window.location.href = "/DonMua/ThanhToanKhachHang?MaPerson=" + selectedValue;
+    }
+</script>
+
+
+

@@ -1,0 +1,67 @@
+﻿
+@{
+
+}
+
+<link href="~/Content/ShareStyle/Style.css" rel="stylesheet" />
+
+<style>
+    .star {
+        list-style-type: none;
+        cursor: pointer;
+        color: #ffe500;
+        font-size: 20px;
+        font-weight: 100;
+        position: relative;
+    }
+
+        .star::before {
+            content: "\2605";
+        }
+
+    .control-fiter button span {
+        margin-left: 2px;
+        color: #ffbf00;
+        font-size: 18px;
+    }
+
+    .btn-filter-comment {
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        padding: 8px;
+        margin: 5px;
+        font-size: 13px;
+    }
+</style>
+
+<div class="control-fiter">
+    <button type="button" class="btn-filter-comment" value="0">Tất cả</button>
+    <button type="button" class="btn-filter-comment" value="5">5 <span>★</span></button>
+    <button type="button" class="btn-filter-comment" value="4">4 <span>★</span></button>
+    <button type="button" class="btn-filter-comment" value="3">3 <span>★</span></button>
+    <button type="button" class="btn-filter-comment" value="2">2 <span>★</span></button>
+    <button type="button" class="btn-filter-comment" value="1">1 <span>★</span></button>
+</div>
+
+
+<div id="CommentSection">
+    <!-- Đây là nơi hiển thị đánh giá sau khi lọc -->
+    @Html.Action("ShowComment", "DanhGia")
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.control-fiter button').click(function () {
+            var selectedRating = $(this).val();
+            $.ajax({
+                url: '@Url.Action("FilterByRating", "DanhGia")',
+                type: 'GET',
+                data: { rating: selectedRating },
+                success: function (response) {
+                    $('#CommentSection').html(response);
+                }
+            });
+        });
+    });
+</script>

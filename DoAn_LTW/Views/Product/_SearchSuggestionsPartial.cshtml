@@ -1,0 +1,135 @@
+﻿@model IEnumerable<DoAn_LTW.Models.CHITIETSANPHAM>
+
+<style>
+    .product-box {
+        position: absolute;
+        top: 50px;
+        right: 100px;
+        z-index: 10;
+        background-color: white;
+        cursor: pointer;
+        width: 400px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        padding-bottom: 10px;
+    }
+
+    .title-box {
+        background-color: #e4e4e4;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .product-box .title-box {
+        font-weight: bold;
+        padding: 10px;
+        margin: 0;
+    }
+
+    .search-item {
+        text-decoration: none;
+    }
+
+    .product-search:hover {
+        background-color: #e4e4e4;
+    }
+
+    .product-search {
+        display: flex;
+        padding: 5px 10px 5px 10px;
+        align-items: center;
+        border-top: 1px solid #ccc;
+    }
+
+    .product-search .img-search-item {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+
+    .search-item-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .search-item-name {
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .price-product {
+        margin-top: 5px;
+    }
+
+    .search-item-info .price-product .gia {
+        font-size: 12px;
+        height: 10px;
+    }
+
+    .search-item-info .price-product .giaMoi {
+        font-size: 14px;
+    }
+
+    .search-item-name {
+        font-size: 12px;
+    }
+
+    @@media (max-width: 786px) {
+        .product-box {
+            top: 350px;
+            right: 15px;
+            z-index: 20;
+        }
+    }
+</style>
+
+<link href="~/Content/ShareStyle/Style.css" rel="stylesheet" />
+
+
+<div class="product-box mt-2">
+    <p class="title-box">Sản phẩm gợi ý</p>
+    @foreach (var product in Model)
+    {
+        <a href="@Url.Action("Click_Show_Detail", "Product", new { ID = product.ID })" class="search-item">
+            <div class="product-search">
+                <img class="mr-1 img-search-item" src="~/Content/image/Image_Product/@product.HINHANH" alt="@product.TENSANPHAM" />
+                <div class="search-item-info">
+                    <p class="search-item-name">@product.TENSANPHAM</p>
+                    <div class="price-product">
+                        @{
+                            var giaMoi = product.GIA - 2000000;
+                        }
+                        <p class="giaMoi">@giaMoi</p>
+                        <del class="gia">@product.GIA</del>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    }
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var giaElements = document.querySelectorAll(".gia");
+        var giaMoiElements = document.querySelectorAll(".giaMoi");
+
+        giaElements.forEach(function (element) {
+            var gia = parseFloat(element.textContent);
+            var formattedGia = gia.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            element.textContent = formattedGia;
+        });
+
+        giaMoiElements.forEach(function (element) {
+            var gia = parseFloat(element.textContent);
+            var formattedGia = gia.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            element.textContent = formattedGia;
+        });
+    });
+
+</script>
+
+<script src="~/Content/ShareJS/JavaScript.js"></script>
+

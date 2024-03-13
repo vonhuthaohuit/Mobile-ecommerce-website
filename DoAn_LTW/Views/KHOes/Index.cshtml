@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DoAn_LTW.Models.KHO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<main id="main" class="main">
+    <p>
+        @Html.ActionLink("Thêm Mới", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MAKHO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TENKHO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DIACHIKHO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SODIENTHOAIKHO)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MAKHO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENKHO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIACHIKHO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SODIENTHOAIKHO)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</main>
+

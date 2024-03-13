@@ -1,0 +1,43 @@
+﻿@model DoAn_LTW.Models.KHO_CHITIETSANPHAM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KHO_CHITIETSANPHAM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MAKHO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAKHO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MACHITIETSANPHAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MACHITIETSANPHAM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SOLUONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONG)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

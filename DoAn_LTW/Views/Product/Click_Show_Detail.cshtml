@@ -1,0 +1,365 @@
+﻿@model DoAn_LTW.Models.View_CTSP
+
+@{
+    Layout = "~/Views/Shared/_Userlayout.cshtml";
+    ViewBag.Title = "Index";
+    int reviewsToShowInitially = 5;
+    @functions {
+        Random random = new Random();
+
+        int GetRandomDiscount()
+        {
+            return random.Next(5, 26);
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sugong's Phone Store</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/assets/css/templatemo.css" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap" />
+    <link rel="stylesheet" href="~/assets/css/fontawesome.min.css" />
+
+    <link rel="stylesheet" href="~/Content/ShareStyle/Style.css" />
+    <script src="~/Content/ShareJS/JavaScript.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .swiper-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+            border-radius: 12px;
+        }
+
+        .swiper-wrapper {
+            margin-bottom: 10px;
+            height: 400px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            margin-top: 8px;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: white;
+            background-color: grey;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.3;
+        }
+
+            .swiper-button-next::after,
+            .swiper-button-prev::after {
+                font-size: 24px;
+            }
+
+        .swiper-button-prev {
+            border-radius: 0 100px 100px 0;
+            left: 0;
+        }
+
+        .swiper-button-next {
+            border-radius: 100px 0 0 100px;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Open Content -->
+    <section class="bg-light">
+        <div class="container pb-3">
+            <div class="row pb-5">
+                <div class="col-lg-5 mt-5">
+
+                    <div class="card mb-3">
+                        <img class="card-img img-fluid"
+                             src="~/assets/img/@Model.DetailProduct.HINHANH"
+                             alt="Card image cap"
+                             id="product-detail" />
+                    </div>
+
+                    @* View nhiều ảnh và trượt *@
+                    <!--<div class="row">-->
+                    <!--Start Controls-->
+                    <!--<div class="col-1 align-self-center">
+                <a href="#multi-item-example"
+                   role="button"
+                   data-bs-slide="prev">
+                    <i class="text-dark fas fa-chevron-left"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </div>-->
+                    <!--End Controls-->
+                    <!--Start Carousel Wrapper-->
+                    <!--<div id="multi-item-example"
+            class="col-10 carousel slide carousel-multi-item"
+            data-bs-ride="carousel">-->
+                    <!--Start Slides-->
+                    <!--<div class="carousel-inner product-links-wap" role="listbox">-->
+                    <!--First slide-->
+                    <!--<div class="carousel-item active">
+                <div class="row">
+                    <div class="col-4">
+                        <a href="#">
+                            <img class="card-img img-fluid"
+                                 src="~/assets/img/product_single_01.jpg"
+                                 alt="Product Image 1" />
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img class="card-img img-fluid"
+                                 src="~/assets/img/product_single_02.jpg"
+                                 alt="Product Image 2" />
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img class="card-img img-fluid"
+                                 src="~/assets/img/product_single_03.jpg"
+                                 alt="Product Image 3" />
+                        </a>
+                    </div>
+                </div>
+            </div>-->
+                    <!--/.First slide-->
+                    <!--Second slide-->
+                    <!--<div class="carousel-item">
+                <div class="row">
+                    <div class="col-4">
+                        <a href="#">
+                            <img class="card-img img-fluid"
+                                 src="~/assets/img/product_single_04.jpg"
+                                 alt="Product Image 4" />
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img class="card-img img-fluid"
+                                 src="~/assets/img/product_single_05.jpg"
+                                 alt="Product Image 5" />
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img class="card-img img-fluid"
+                                 src="~/assets/img/product_single_06.jpg"
+                                 alt="Product Image 6" />
+                        </a>
+                    </div>
+                </div>
+            </div>-->
+                    <!--/.Second slide-->
+                    <!--Third slide-->
+                    <!--<div class="carousel-item">
+                <div class="row">
+                    <div class="col-4">
+                        <a href="#">
+                            <img class="card-img img-fluid"
+                                 src="~/assets/img/product_single_07.jpg"
+                                 alt="Product Image 7" />
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img class="card-img img-fluid"
+                                 src="~/assets/img/product_single_08.jpg"
+                                 alt="Product Image 8" />
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img class="card-img img-fluid"
+                                 src="~/assets/img/product_single_09.jpg"
+                                 alt="Product Image 9" />
+                        </a>
+                    </div>
+                </div>
+            </div>-->
+                    <!--/.Third slide-->
+                    <!--</div>-->
+                    <!--End Slides-->
+                    <!--</div>-->
+                    <!--End Carousel Wrapper-->
+                    <!--Start Controls-->
+                    <!--<div class="col-1 align-self-center">
+                <a href="#multi-item-example"
+                   role="button"
+                   data-bs-slide="next">
+                    <i class="text-dark fas fa-chevron-right"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>-->
+                    <!--End Controls-->
+                    <!--</div>-->
+                </div>
+
+                <!-- col end -->
+                <div class="col-lg-7 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="h2">@Model.DetailProduct.TENSANPHAM</h1>
+                            <p class="h3 py-2">@Model.DetailProduct.GIA</p>
+                            <h6>Specification:</h6>
+                            <p>
+                                @Model.DetailProduct.MOTASANPHAM
+                            </p>
+
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>Avaliable Color :</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong>@Model.DetailProduct.MAUSAC</strong></p>
+                                </li>
+                            </ul>
+
+                            <h6>Description:</h6>
+                            <ul class="list-unstyled pb-3">
+                                <li>@Model.DetailProduct.MOTASANPHAM</li>
+                            </ul>
+
+                            <form action="" method="GET">
+                                <input type="hidden"
+                                       name="product-title"
+                                       value="Activewear" />
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <ul class="list-inline pb-3">
+                                            <li class="list-inline-item text-right">
+                                                Quantity
+                                                <input type="hidden"
+                                                       name="product-quanity"
+                                                       id="product-quanity"
+                                                       value="1" />
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <span class="btn btn-success" id="btn-minus">-</span>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <span class="badge bg-secondary" id="var-value">1</span>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <span class="btn btn-success" id="btn-plus">+</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <div class="row pb-3">
+                                    <div class="col d-grid">
+                                        <button type="submit"
+                                                class="btn btn-success btn-lg"
+                                                name="submit"
+                                                value="buy">
+                                            <a href="@Url.Action("AddCart", "GioHang", new { @maCTSP = ViewBag.MACHITIETSANPHAM})">Thêm Vào Giỏ Hàng</a>
+                                        </button>
+                                    </div>
+                                    <div class="col d-grid">
+                                        <button type="submit"
+                                                class="btn btn-success btn-lg"
+                                                name="submit"
+                                                value="addtocard">
+                                            <a href="@Url.Action("AddCart", "GioHang", new { @maCTSP = ViewBag.MACHITIETSANPHAM})">Thêm Vào Giỏ Hàng</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.Action("ListSwiperProduct", "Product")
+
+            <div style="margin-top: 40px;">
+                <input type="hidden" name="MACHITIETSANPHAM" value="@ViewBag.MACHITIETSANPHAM" />
+                @Html.Action("hienThi", "DanhGia")
+            </div>
+
+        </div>
+    </section>
+    <!-- Close Content -->
+    <!-- Start Script -->
+    <script src="~/assets/js/templatemo.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var swiper = new Swiper('.swiper-container', {
+                loop: true,
+                slidesPerView: 2,
+                slidesPerColumn: 1,
+                slidesPerColumnFill: 'col',
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                breakpoints: {
+                    786: {
+                        slidesPerView: 5,
+                    },
+                },
+            });
+
+            window.addEventListener('resize', resizeSlides);
+
+            function resizeSlides() {
+                var slides = swiper.slides;
+                var windowWidth = window.innerWidth;
+
+                slides.forEach(function (slide) {
+                    if (windowWidth < 768) {
+                        slide.style.width = '50%';
+                        slide.style.height = 'auto';
+                    } else {
+                        slide.style.width = '';
+                        slide.style.height = '';
+                    }
+                });
+            }
+        });
+
+    </script>
+    <script>
+    var reviews = @Html.Raw(Json.Encode(Model.Reviews));
+    var reviewsToShow = 5;
+    var displayedReviews = reviewsToShowInitially;
+
+    document.getElementById("loadMoreReviews").addEventListener("click", function () {
+        for (var i = displayedReviews; i < Math.min(displayedReviews + reviewsToShow, reviews.length); i++) {
+            appendReviewToPage(reviews[i]);
+        }
+        displayedReviews += reviewsToShow;
+
+        // Ẩn nút khi đã hiển thị hết đánh giá
+        if (displayedReviews >= reviews.length) {
+            document.getElementById("loadMoreReviews").style.display = "none";
+        }
+    });
+
+    </script>
+
+
+    <!-- End Script -->
+</body>
+</html>

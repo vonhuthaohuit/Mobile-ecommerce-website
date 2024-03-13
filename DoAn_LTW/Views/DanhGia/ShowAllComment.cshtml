@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewBag.Title = "ShowAllComment";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+@model List<DoAn_LTW.Models.DANHGIA>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link href="~/Content/ShareStyle/Style.css" rel="stylesheet" />
+
+@{
+    @functions {
+        public string GetStarRatingIcon(double? rating)
+        {
+            int roundedRating = (int)Math.Round(rating.Value);
+            switch (roundedRating)
+            {
+                case 1: return "★☆☆☆☆";
+                case 2: return "★★☆☆☆";
+                case 3: return "★★★☆☆";
+                case 4: return "★★★★☆";
+                case 5: return "★★★★★";
+                default: return "Chưa có đánh giá";
+            }
+        }
+    }
+}
+
+<style>
+    .comment-box {
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,.1), 0 2px 6px 2px rgba(60,64,67,.15);
+        padding: 10px 30px 30px 30px;
+        background-color: white;
+        font-size: 14px;
+    }
+
+    .comment {
+        margin-left: 40px;
+        border: none;
+        border-radius: 12px;
+        background-color: #f3f3f3;
+        padding: 10px;
+        word-wrap: break-word;
+    }
+
+    .comment p:first-child {
+        font-size: 20px;
+        color: #ffbf00; 
+        margin-bottom: 2px;
+    }
+
+    .btn-submit-comment {
+        border: 1px solid orange;
+        color: orange;
+        background-color: white;
+        font-size: 14px;
+    }
+
+    .btn-submit-comment:hover {
+        background-color: orange;
+        color: white;
+    }
+
+    .comment-box-preview-item {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .comment-info {
+        display: flex;
+    }
+
+    .comment-info p {
+        margin-left: 20px;
+        font-size: 14px;
+    }
+
+    .comment p {
+        font-size: 13px;
+    }
+
+    .btn-delete-review {
+        float: right;
+        position: relative;
+        top: -20px;
+        border: 0;
+    }
+</style>
+
+
+
+<div class="comment-box">
+    <h2 class="comment-title">Đánh giá & nhận xét sản phẩm</h2>
+    <hr />
+    <div class="comment-list">
+        @foreach (var item in Model)
+        {
+            <div class="comment-box-preview-item">
+                <div class="comment-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" /></svg>
+                    <p>Tên người dùng</p>
+                </div>
+                <div class="comment">
+                    <p>@GetStarRatingIcon(item.DIEMDANHGIA)</p>
+                    <p>@item.BINHLUAN</p>
+                    <button class="btn-delete-review " data-review-id="@item.MADANHGIA">Xóa</button>
+                </div>
+            </div>
+        }
+    </div>
+    <button id="createReviewButton" class="btn-submit-comment btn-default btn m-2" type="button">Gửi đánh giá của bạn</button>
+
+</div>
+<div id="CreateComment" style="display: none;"></div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#createReviewButton').click(function() {
+            $.ajax({
+                url: '@Url.Action("RenderReviewForm", "DanhGia")',
+                type: 'GET',
+                success: function(response) {
+                    $('#CreateComment').html(response);
+                    $('#CreateComment').show();
+                }
+            });
+        });
+
+        // Bạn cũng có thể sử dụng event delegation để bắt sự kiện cho nút submit trong form đánh giá
+        $(document).on('submit', '#createReviewForm', function(e) {
+            e.preventDefault(); // Ngăn chặn form gửi đi, chúng ta sẽ sử dụng Ajax thay thế
+            var formData = $(this).serialize();
+            $.ajax({
+                url: '@Url.Action("hienThi", "DanhGia")',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+
+                    $('#CreateComment').html('');
+                    // (Tuỳ chọn) Bạn có thể thực hiện chuyển hướng hoặc các hành động khác tại đây.
+                }
+            });
+        });
+
+        $(document).on('click', '#cancelReviewButton', function () {
+            $('#CreateComment').html(''); // Xóa nội dung của #CreateComment
+        });
+    });
+
+    $(document).on('click', '.btn-delete-review', function () {
+        var reviewId = $(this).data('review-id');
+
+        // Gửi yêu cầu Ajax để xóa đánh giá
+        $.ajax({
+            url: '@Url.Action("XoaDanhGia", "DanhGia")',
+            type: 'POST',
+            data: { id: reviewId },
+            success: function (response) {
+
+                $('#CommentSection').html(response);
+            },
+            error: function (error) {
+                console.error('Error deleting review:', error);
+                alert('Có lỗi xảy ra khi xóa đánh giá.');
+            }
+        });
+    });
+</script>
+

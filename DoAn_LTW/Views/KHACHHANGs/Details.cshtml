@@ -1,0 +1,35 @@
+﻿@model DoAn_LTW.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutDonHang.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KHACHHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MAKHACHHANG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAKHACHHANG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAPERSON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAPERSON)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

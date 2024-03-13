@@ -1,0 +1,55 @@
+﻿@model List<DoAn_LTW.Models.Sold_Product>
+
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Line Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <style>
+        #lineChartContainer {
+            margin-left: 350px;
+            margin-top: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="lineChartContainer">
+        <canvas id="salesChart" width="1200" height="500"></canvas>
+    </div>
+    <script>
+        var ctx = document.getElementById('salesChart').getContext('2d');
+        var data = @Html.Raw(Json.Encode(Model));
+
+        var labels = data.map(function (item) {
+            return item.ProductName;
+        });
+
+        var values = data.map(function (item) {
+            return item.QuantitySold;
+        });
+
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Quantity Sold',
+                    data: values,
+                    backgroundColor: 'blue',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+</body>
+</html>

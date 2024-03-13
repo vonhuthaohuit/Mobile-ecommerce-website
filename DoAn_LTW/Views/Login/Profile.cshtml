@@ -1,0 +1,39 @@
+﻿@model DoAn_LTW.Models.PERSON
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutDonHang.cshtml";
+}
+
+<div class="profile-item">
+    <div class="title-profile">
+        <h5>Hồ sơ</h5>
+        <p>Vui lòng quản lý hồ sơ để bảo mật tài khoản</p>
+    </div>
+    <hr />
+    <div class="Ten-Profile">
+        <p>Tên: <span class="mx-3">@Model.TEN</span></p>
+    </div>
+
+    <div class="SDT-Profile">
+        <p>Số điện thoại: <span class="mx-3">@Model.SODIENTHOAI</span></p>
+    </div>
+
+    <div class="Email-Profile">
+        <p>Email: <span class="mx-3">@Model.EMAIL</span></p>
+    </div>
+
+    <div class="DiaChi-Profile">
+        <p>Địa chỉ: <span class="mx-3">@Model.DIACHI</span></p>
+    </div>
+
+    <div class="GioiTinh-Profile">
+        <p>Giới Tính: <span class="mx-3">@Model.GIOITINH</span></p>
+    </div>
+</div>
+<style>
+    .link-item{
+        text-decoration: none;
+    }
+</style>
+@Html.ActionLink("Sửa thông tin", "Edit", new { id = Model.ID }, new {@class = "link-item" })

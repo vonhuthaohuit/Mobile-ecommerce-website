@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DoAn_LTW.Models.PROC_GET_DATA_CHI_TIET_DON_MUA_CHUA_THANH_TOAN_Result>
+
+@{
+    ViewBag.Title = "Đơn Mua";
+    Layout = "~/Views/Shared/_LayoutDonHang.cshtml";
+}
+
+<style>
+    .red-span {
+        color: red;
+    }
+    .thanh-tien{
+        text-align: right;
+    }
+</style>
+<ul class="list-group">
+    @foreach (var item in Model)
+    {
+        
+        <li class="list-group-item">
+            <div class="row">
+                <div class="name-item col-md-8">
+                    Tên Sản Phẩm: @item.TENSANPHAM | Màu Sắc: @item.MAUSAC
+                </div>
+                <div class="price-item col-md-4">
+                    Giá: <span class="red-span formatted-price" data-raw-price="@item.GIA">@item.GIA VNĐ</span>
+                    @Html.ActionLink("Xóa", "XoaDonMua", new { @TEN = item.TENSANPHAM }, new { style = "text-decoration:none; float:right;" })
+                </div>
+            </div>
+            <div class="quantity-item">
+                <p>Số Lượng: @item.SOLUONG</p>
+            </div>
+            <div class="">
+                <img class="img-fluid img-160px" src="~/Content/image/Image_Product/@item.HINHANH" alt="DienThoai" />
+            </div>
+            <div class="thanh-tien">
+                @{
+                    Nullable<double> tongThanhTienSP = 0;
+                    tongThanhTienSP = item.SOLUONG * item.GIA;
+                }
+                <p>Tổng Thành Tiền: <span class="red-span formatted-price" data-raw-price="@tongThanhTienSP">@tongThanhTienSP</span></p>
+                @{
+                    tongThanhTienSP = 0;
+                }
+            </div>
+        </li>
+    }
+</ul>
+<div class="Error">@ViewBag.Error</div>
+<div class="thanh-tien">Tổng thành tiền: <span class="red-span formatted-price" data-raw-price="@ViewBag.TongThanhTien">@ViewBag.TongThanhTien</span></div>
+<a style="text-decoration: none" href="@Url.Action("SendEmail", "DonMua")">Thanh Toán</a>
+<script>
+    window.onload = function () {
+        var formattedPrices = document.querySelectorAll('.formatted-price');
+        formattedPrices.forEach(function (element) {
+            var rawPrice = element.getAttribute('data-raw-price');
+            var formattedPrice = new Intl.NumberFormat('vi-VN').format(rawPrice);
+            element.innerHTML = formattedPrice + ' VNĐ';
+        });
+    };
+</script>

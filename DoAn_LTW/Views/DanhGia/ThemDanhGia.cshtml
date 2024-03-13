@@ -1,0 +1,245 @@
+﻿@model DoAn_LTW.Models.DANHGIA
+
+<style>
+    .avaliacou {
+        display: flex;
+        width: 250px;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        float: left;
+    }
+
+        .avaliacou input {
+            display: none;
+        }
+
+    .star-icon {
+        list-style-type: none;
+        cursor: pointer;
+        color: #ffbf00;
+        font-size: 40px;
+        font-weight: 100;
+        position: relative;
+    }
+
+        .star-icon::before {
+            content: "\2605";
+        }
+
+        .star-icon.ativo ~ .star-icon::before {
+            content: "\2606";
+        }
+
+    .avaliacou:hover .star-icon::before {
+        content: "\2605";
+    }
+
+    .star-icon:hover ~ .star-icon::before {
+        content: "\2606";
+    }
+
+    .form-horizontal {
+        border-top: 1px solid #ccc;
+    }
+
+    .comment-form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .comment-form {
+        display: flex;
+        align-items: center;
+        border-radius: 12px;
+        background-color: white;
+    }
+
+    .img-comment-item {
+        width: 300px;
+        margin: 20px;
+    }
+
+    .btn-danhGia {
+        color: orange;
+        border-color: orange;
+        background-color: white;
+        font-size: 14px;
+    }
+
+        .btn-danhGia:hover {
+            background-color: orange;
+            color: white;
+        }
+
+    .form-comment {
+        width: 100%;
+        padding-right: 20px;
+        margin-left: 20px;
+        font-size: 13px;
+    }
+
+    .box-diemDanhGia {
+        display: flex;
+        align-items: center;
+    }
+
+    .box-binhluan {
+        margin-top: -10px;
+    }
+
+    textarea {
+        margin-top: 10px;
+    }
+
+        textarea.form-control {
+            font-size: 13px;
+        }
+
+    .control-label {
+        margin-right: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .btn-cancel {
+        border: none;
+    }
+
+    .img-comment {
+        border-right: 1px solid #cccccc;
+        width: 75%;
+    }
+
+    .name-product-comment {
+        margin-bottom: 0;
+    }
+
+    .title-comment {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0 10px 0;
+    }
+
+    @@media (max-width: 768px){
+        .img-comment {
+            display: none;
+        }
+
+        .form-comment {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="comment-form-container">
+    <div class="comment-form">
+        <div class="img-comment">
+            <img class="img-comment-item" src="~/Content/image/iphone11a.jpg" />
+        </div>
+        <div class="form-comment">
+            @Html.HiddenFor(model => model.MACHITIETSANPHAM, new { @Value = ViewBag.MACHITIETSANPHAM })
+            @using (Html.BeginForm("ThemDanhGia", "DanhGia", FormMethod.Post, new { id = "FormComment" }))
+            {
+
+                @Html.AntiForgeryToken()
+                <div class="title-comment">
+                    <p class="name-product-comment">Tên sản phẩm nè!!</p>
+                    <button type="button" id="cancelReviewButton" class="btn btn-default btn-cancel">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.99586 8L15.5824 2.41348C15.8475 2.14881 15.9967 1.78966 15.997 1.41503C15.9973 1.0404 15.8488 0.680986 15.5841 0.415851C15.3195 0.150716 14.9603 0.00157854 14.5857 0.0012477C14.2111 0.000916852 13.8517 0.14942 13.5865 0.414087L8 6.00061L2.41348 0.414087C2.14834 0.148952 1.78874 0 1.41378 0C1.03882 0 0.679222 0.148952 0.414087 0.414087C0.148952 0.679222 0 1.03882 0 1.41378C0 1.78874 0.148952 2.14834 0.414087 2.41348L6.00061 8L0.414087 13.5865C0.148952 13.8517 0 14.2113 0 14.5862C0 14.9612 0.148952 15.3208 0.414087 15.5859C0.679222 15.851 1.03882 16 1.41378 16C1.78874 16 2.14834 15.851 2.41348 15.5859L8 9.99939L13.5865 15.5859C13.8517 15.851 14.2113 16 14.5862 16C14.9612 16 15.3208 15.851 15.5859 15.5859C15.851 15.3208 16 14.9612 16 14.5862C16 14.2113 15.851 13.8517 15.5859 13.5865L9.99586 8Z" fill="#6D6E72"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <input type="hidden" name="MAKHACHHANG" value="@ViewBag.MaKH" />
+                    <input type="hidden" name="MACHITIETSANPHAM" value="@ViewBag.MaCTSP" />
+
+                    <div class="form-group box-diemDanhGia">
+                        <label class="control-label col-md-3">Mức độ đánh giá</label>
+                        <div class="col-md-9">
+                            <div class="avaliacou">
+                                <label for="star1" class="star-icon" data-avaliacao="1"><input type="radio" name="DIEMDANHGIA" id="star1" value="1"></label>
+                                <label for="star2" class="star-icon" data-avaliacao="2"><input type="radio" name="DIEMDANHGIA" id="star2" value="2"></label>
+                                <label for="star3" class="star-icon" data-avaliacao="3"><input type="radio" name="DIEMDANHGIA" id="star3" value="3"></label>
+                                <label for="star4" class="star-icon" data-avaliacao="4"><input type="radio" name="DIEMDANHGIA" id="star4" value="4"></label>
+                                <label for="star5" class="star-icon" data-avaliacao="5"><input type="radio" name="DIEMDANHGIA" id="star5" value="5"></label>
+                            </div>
+                            @Html.ValidationMessage("DIEMDANHGIA", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group box-binhluan">
+                        @Html.LabelFor(model => model.BINHLUAN, "Đánh giá", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-12">
+                            @Html.TextAreaFor(model => model.BINHLUAN, new { @class = "form-control", rows = 6, cols = 50 })
+                            @Html.ValidationMessageFor(model => model.BINHLUAN, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-12" align="center">
+                            <input type="submit" value="Gửi đánh giá" class="btn btn-default btn-danhGia" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function initializeRating() {
+        var stars = document.querySelectorAll('.star-icon');
+        var radioButtons = document.querySelectorAll('.avaliacou input');
+
+        function updateStarStyling() {
+            stars.forEach(function (star, index) {
+                star.classList.toggle('ativo', radioButtons[index].checked);
+            });
+        }
+
+        document.addEventListener("click", function (e) {
+            var classStar = e.target.classList;
+            if (classStar.contains('star-icon')) {
+                var index = Array.from(stars).indexOf(e.target);
+                radioButtons[index].checked = !radioButtons[index].checked;
+                updateStarStyling();
+            }
+        });
+
+        function setDefaultRating() {
+            var checkedButton = Array.from(radioButtons).find(radioButton => radioButton.checked);
+            if (!checkedButton) {
+                radioButtons[4].checked = true;
+                updateStarStyling();
+            }
+        }
+
+        setDefaultRating();
+    }
+
+    document.addEventListener("DOMContentLoaded", initializeRating);
+
+    $(document).ajaxComplete(function () {
+        initializeRating();
+    });
+
+
+</script>

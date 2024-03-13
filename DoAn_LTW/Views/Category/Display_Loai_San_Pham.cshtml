@@ -1,0 +1,68 @@
+﻿@model IEnumerable<DoAn_LTW.Models.LOAISANPHAM>
+
+@{
+    ViewBag.Title = "Danh Sách Loại Sản Phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Danh Sách Các Loại Sản Phẩm</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    @Html.ActionLink("Trang Chủ", "Main_Page", "Provider")
+                </li>
+                <li class="breadcrumb-item">Danh Mục Sản Phẩm</li>
+                <li class="breadcrumb-item active">Danh Mục Các Loại Sản Phẩm</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Loại Sản Phẩm</h5>
+                        <p>
+                            @Html.ActionLink("Thêm Mới", "Create_Loai_San_Pham", "Category", new { }, new { @class = "btn btn-primary" })
+                        </p>
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MALOAI)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TENLOAI)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MALOAI)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TENLOAI)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Sửa", "Update_Loai_San_Pham", "Category", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                                            @Html.ActionLink("Xóa", "Delete_Loai_San_Pham", "Category", new { id = item.ID }, new { @class = "btn btn-danger" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Sugong's Phone Shop</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="~/Content/image/Logo_SuGong.jpg" rel="icon" />
+    <link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet" />
+
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet" />
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+          rel="stylesheet" />
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="~/assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="~/assets/vendor/simple-datatables/style.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <style>
+        .img-160px {
+            width: 160px;
+            height: 160px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            @Html.ActionLink("Sugong's Phone Shop", "Index", "Product", null , new { @class = "logo d-flex align-items-center" })
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+        <!-- End Logo -->
+    </header>
+
+    <!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                @Html.ActionLink("Trang Chủ", "Index", "Product", null, new { @class = "nav-link" })
+            </li>
+            <!-- End Dashboard Nav -->
+            <!-- Danh Mục Loại Sản Phẩm -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   data-bs-target="#components-nav"
+                   data-bs-toggle="collapse"
+                   href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Danh Mục Sản Phẩm</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="components-nav"
+                    class="nav-content collapse"
+                    data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="@Url.Action("Display_Loai_San_Pham", "Category")" class="text-decoration-none fst-normal">
+                            <i class="bi bi-circle"></i><span>Danh Mục Các Loại Sản Phẩm</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Danh Sách Các Nhà Cung Cấp -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   data-bs-target="#forms-nav"
+                   data-bs-toggle="collapse"
+                   href="~/Views/Provider/Display_Nha_Cung_Cap.cshtml">
+                    <i class="bi bi-journal-text"></i><span>Danh Sách Nhà Cung Cấp</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="forms-nav"
+                    class="nav-content collapse"
+                    data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="@Url.Action("Display_Nha_Cung_Cap", "Provider")" class="text-decoration-none fst-normal">
+                            <i class="bi bi-circle"></i> Thông Tin Các Nhà Cung Cấp
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Danh Sách Các Sản Phẩm -->
+            <li class="nav-item">
+                <a class="nav-link collapsed"
+                   data-bs-target="#tables-nav"
+                   data-bs-toggle="collapse"
+                   href="#">
+                    <i class="bi bi-layout-text-window-reverse"></i><span>Danh Sách Sản Phẩm</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="tables-nav"
+                    class="nav-content collapse"
+                    data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="@Url.Action("Display_San_Pham", "Product")" class="text-decoration-none fst-normal">
+                            <i class="bi bi-circle"></i> Thông Tin Các Sản Phẩm
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Charts-->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="@Url.Action("LineChart", "Chart")">
+                            <i class="bi bi-circle"></i><span>Line Chart</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ProductSalesChart", "Chart")">
+                            <i class="bi bi-circle"></i><span>ProctSales Chart</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Charts Nav -->
+
+            <!-- Kho-->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#kho-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-bar-chart"></i><span>Kho</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="kho-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="@Url.Action("Index", "Khoes")">
+                            <i class="bi bi-circle"></i><span>Kho</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#khoctsp-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-bar-chart"></i><span>Kho Chi Tiết Sản Phẩm</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="khoctsp-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="@Url.Action("Index", "KHO_CHITIETSANPHAM")">
+                            <i class="bi bi-circle"></i><span>Kho Chi Tiết Sản Phẩm</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#nv-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-bar-chart"></i><span>Nhân Viên</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="nv-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="@Url.Action("Register_Account_NV", "Account")">
+                            <i class="bi bi-circle"></i><span>Thêm Nhân Vien</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="@Url.Action("ThanhToan", "DonMua")">
+                    <i class="bi bi-circle"></i>Thanh Toán Khách Hàng
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- End Sidebar-->
+
+    @RenderBody();
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright"></div>
+        <div class="credits"></div>
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#"
+       class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <!-- Template Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+</body>
+</html>

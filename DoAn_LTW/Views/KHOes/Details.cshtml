@@ -1,0 +1,51 @@
+﻿@model DoAn_LTW.Models.KHO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KHO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MAKHO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAKHO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TENKHO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENKHO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIACHIKHO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIACHIKHO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SODIENTHOAIKHO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SODIENTHOAIKHO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

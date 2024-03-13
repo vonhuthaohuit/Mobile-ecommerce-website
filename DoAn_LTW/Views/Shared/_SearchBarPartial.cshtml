@@ -1,0 +1,83 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sugong's Store</title>
+    <link href="~/Content/image/Logo_SuGong.jpg" rel="icon" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #searchForm {
+            z-index: 15;
+            display: flex;
+        }
+
+        #searchSuggestions {
+            z-index: 120;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Search", "Product", FormMethod.Get, new { id = "searchForm" }))
+    {
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchKeyword" name="searchKeyword">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+        <div id="searchSuggestions" style="display: none;"></div>
+    }
+    <div class="overlay" id="Overlay"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#searchKeyword').on('input', function() {
+                var searchKeyword = $(this).val();
+                var Overlay = $('#Overlay');
+                if (searchKeyword.length >= 1) {
+                    $.ajax({
+                        url: '@Url.Action("SearchSuggestions", "Product")',
+                        type: 'GET',
+                        data: { searchKeyword: searchKeyword },
+                        success: function(response) {
+                            if (response.length > 0) {
+                                $('#searchSuggestions').html(response);
+                                $('#searchSuggestions').show();
+                                Overlay.show();
+                            } else {
+                                $('#searchSuggestions').hide();
+                                Overlay.hide();
+                            }
+                        }
+                    });
+                }
+                else {
+                    $('#searchSuggestions').hide();
+                    Overlay.hide();
+                }
+            });
+
+            // Bắt sự kiện khi click vào gợi ý để điền vào thanh tìm kiếm
+            $(document).on('click', '.suggestion', function() {
+                var suggestionText = $(this).text();
+                $('#searchKeyword').val(suggestionText);
+                window.location.href = 'URL của trang Search?searchKeyword=' + suggestionText;
+            });
+        });
+    </script>
+
+
+
+</body>
+</html>

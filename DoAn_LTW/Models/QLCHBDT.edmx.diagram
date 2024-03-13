@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0b41955e68a943919d54202c7b75acaf" Name="Diagram1">
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.CHITIETDONMUA" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.CHITIETSANPHAM" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.DANHGIA" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.DONMUA" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.GIOHANG" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.KHACHHANG" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.KHO" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.KHO_CHITIETSANPHAM" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.LOAISANPHAM" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.NHACUNGCAP" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.NHANVIEN" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.PERSON" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.QUANGCAO" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.sysdiagram" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.TAIKHOANKHACHHANG" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.TAIKHOANNHANVIEN" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.THANHTOANDONMUA" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUAN_LY_CUA_HANG_BAN_DIEN_THOAI_LTWModel.VITRICUAHANG" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
